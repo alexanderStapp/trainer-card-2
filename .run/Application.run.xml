@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-    <module name="store" />
-    <option name="SPRING_BOOT_MAIN_CLASS" value="com.codewithmosh.store.StoreApplication" />
+    <module name="trainer-card-2" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.alexstapp.trainercard2.StoreApplication" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

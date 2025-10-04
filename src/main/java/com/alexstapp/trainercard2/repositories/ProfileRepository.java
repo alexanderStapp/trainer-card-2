@@ -1,0 +1,7 @@
+package com.alexstapp.trainercard2.repositories;
+
+import com.alexstapp.trainercard2.entities.Profile;
+import org.springframework.data.repository.CrudRepository;
+
+public interface ProfileRepository extends CrudRepository<Profile, Long> {
+}
