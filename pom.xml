@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.codewithmosh</groupId>
-    <artifactId>trainer-card-2</artifactId>
+    <artifactId>trainercard2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>store</name>
     <description>store</description>
