@@ -11,8 +11,8 @@
     <groupId>com.codewithmosh</groupId>
     <artifactId>trainercard2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>store</name>
-    <description>store</description>
+    <name>trainercard2</name>
+    <description>trainercard2</description>
     <url/>
     <licenses>
         <license/>
@@ -92,7 +92,7 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>11.13.2</version>
                 <configuration>
-                    <url>jdbc:mysql://localhost:3306/store_api?createDatabaseIfNotExist=true</url>
+                    <url>jdbc:mysql://localhost:3306/trainer_card_2?createDatabaseIfNotExist=true</url>
                     <user>root</user>
                     <password>MyPassword!</password>
                     <cleanDisabled>false</cleanDisabled>

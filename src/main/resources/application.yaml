@@ -1,8 +1,8 @@
 spring:
   application:
-    name: store
+    name: trainer_card_2
   datasource:
-    url: jdbc:mysql://localhost:3306/store_api?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/trainer_card_2?createDatabaseIfNotExist=true
     username: root
     password: weavile!
   jpa:

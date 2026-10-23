@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <module name="trainercard2" />
-    <option name="SPRING_BOOT_MAIN_CLASS" value="com.alexstapp.trainercard2.StoreApplication" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.alexstapp.trainercard2.TrainerCard2Application" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

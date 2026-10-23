@@ -21,8 +21,8 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "email")
     private String email;
@@ -60,7 +60,7 @@ public class User {
     public String toString() {
         return getClass().getSimpleName() + "(" +
                 "id = " + id + ", " +
-                "name = " + name + ", " +
+                "username = " + username + ", " +
                 "email = " + email + ")";
     }
 }

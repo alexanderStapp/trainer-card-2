@@ -1,9 +1,6 @@
 package com.alexstapp.trainercard2.controllers;
 
-import com.alexstapp.trainercard2.dtos.ChangePasswordRequest;
-import com.alexstapp.trainercard2.dtos.CreateUserRequest;
-import com.alexstapp.trainercard2.dtos.UpdateUserRequest;
-import com.alexstapp.trainercard2.dtos.UserDto;
+import com.alexstapp.trainercard2.dtos.*;
 import com.alexstapp.trainercard2.entities.User;
 import com.alexstapp.trainercard2.mappers.UserMapper;
 import com.alexstapp.trainercard2.repositories.UserRepository;
@@ -19,18 +16,17 @@ import java.util.Set;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/users")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
     @GetMapping
     public Iterable<UserDto> getAllUsers(
-            @RequestHeader(required = false, name = "x-auth-token") String authToken,
             @RequestParam(required = false, defaultValue = "", name = "sort") String sort
     ) {
-        System.out.println(authToken);
-        if (!Set.of("name", "email").contains(sort)) {
-            sort = "name";
+        if (!Set.of("username", "email").contains(sort)) {
+            sort = "username";
         }
 
         return userRepository.findAll(Sort.by(sort))
@@ -50,15 +46,34 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDto> createUser(
+    public ResponseEntity<String> createUser(
             @RequestBody CreateUserRequest request,
             UriComponentsBuilder uriBuilder
     ) {
-        User user = userRepository.save(userMapper.toEntity(request));
-        UserDto userDto = userMapper.toDto(user);
-        var uri = uriBuilder.path("/users/{id}").buildAndExpand(userDto.getId()).toUri();
+        if (userRepository.existsByUsername(request.getUsername())) {
+            return new ResponseEntity<>("A user with that username already exists.", HttpStatus.CONFLICT);
+        } else {
+            User user = userRepository.save(userMapper.toEntity(request));
+//            UserDto userDto = userMapper.toDto(user);
+//            var uri = uriBuilder.path("/users/{id}").buildAndExpand(userDto.getId()).toUri();
+//
+//            return ResponseEntity.created(uri).body(userDto);
+            return ResponseEntity.ok(null);
+        }
+    }
 
-        return ResponseEntity.created(uri).body(userDto);
+    @PostMapping("/login")
+    public ResponseEntity<UserDto> loginUser(@RequestBody LoginRequest request) {
+        User user = userRepository.findByUsername(request.getUsername());
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        if (user.getPassword().equals(request.getPassword())) {
+            return ResponseEntity.ok(userMapper.toDto(user));
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+
+        }
     }
 
     @PutMapping("/{id}")
